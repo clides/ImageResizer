@@ -12,7 +12,7 @@ SECRET_KEY = 'django-insecure-hy)2u!&^o#2nh^e%t*!i(czl#e_*kp6uh6dkxhz$91&3%vptm+
 
 DEBUG = True
 
-ALLOWED_HOSTS = ['ImageResizer.onrender.com', 'localhost']
+ALLOWED_HOSTS = ['ImageResizer.onrender.com', 'localhost', 'https://imageresizer-x7xr.onrender.com']
 
 # AWS Settings
 AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')
