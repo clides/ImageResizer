@@ -1,0 +1,27 @@
+# .gitignore
+# Django
+*.log
+*.pot
+*.pyc
+__pycache__/
+db.sqlite3
+media/
+
+# Environments
+.env
+.env.*
+.venv
+venv/
+env/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+
+# AWS
+*.pem
+*.csv
+
+# Database backups
+*.dump

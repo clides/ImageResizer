@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-5 text-center">
+    <h2>Processing Your Image</h2>
+    <div class="spinner-border text-primary mt-4" style="width: 3rem; height: 3rem;" role="status">
+        <span class="visually-hidden">Loading...</span>
+    </div>
+    <p class="mt-3">Please wait while we process your image...</p>
+    <div id="status-message" class="mt-3"></div>
+</div>
+
+<script>
+const filename = "{{ filename }}";
+const checkInterval = {{ check_interval }};
+
+function checkProcessingStatus() {
+    fetch(`/check-processing?filename=${filename}`)
+        .then(response => response.json())
+        .then(data => {
+            if (data.status === 'ready') {
+                // Redirect to result page when ready
+                window.location.href = `/result/?filename=${filename}&url=${encodeURIComponent(data.download_url)}`;
+            } else if (data.status === 'error') {
+                document.getElementById('status-message').innerHTML = `
+                    <div class="alert alert-danger">Error: ${data.message}</div>
+                    <a href="/" class="btn btn-primary mt-2">Try Again</a>
+                `;
+            } else {
+                // Still processing, check again after interval
+                setTimeout(checkProcessingStatus, checkInterval);
+            }
+        })
+        .catch(error => {
+            document.getElementById('status-message').innerHTML = `
+                <div class="alert alert-danger">Connection error. Please try again later.</div>
+            `;
+            console.error('Error:', error);
+        });
+}
+
+// Start checking status
+document.addEventListener('DOMContentLoaded', function() {
+    setTimeout(checkProcessingStatus, checkInterval);
+});
+</script>
+{% endblock %}

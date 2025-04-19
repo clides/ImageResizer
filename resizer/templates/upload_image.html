@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2>Upload Image</h2>
+    
+    {% if error %}
+        <div class="alert alert-danger">{{ error }}</div>
+    {% endif %}
+    
+    <div class="card mt-4">
+        <div class="card-body">
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="mb-3">
+                    <label for="image" class="form-label">Select image to resize:</label>
+                    <input class="form-control" type="file" id="image" name="image" 
+                           accept="image/jpeg,image/png" required>
+                    <div class="form-text">Images will be resized to max 256px if needed</div>
+                </div>
+                <button type="submit" class="btn btn-primary">Upload & Process</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
