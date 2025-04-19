@@ -12,6 +12,11 @@
         <div class="card-body text-center">
             <h4 class="card-title">Download Your Image</h4>
             
+            <!-- Add expiration notice -->
+            <div class="alert alert-info mb-4">
+                <i class="bi bi-clock-history"></i> Download link expires in <strong>1 hour</strong>
+            </div>
+            
             {% if download_url %}
             <div class="mt-4 mb-4">
                 <img src="{{ download_url }}" class="img-fluid rounded" style="max-height: 400px;" 
