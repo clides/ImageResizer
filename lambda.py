@@ -4,17 +4,12 @@ from PIL import Image
 from io import BytesIO
 
 s3 = boto3.client('s3')
-MAX_SIZE = 256  # Target maximum dimension in pixels
+MAX_SIZE = 256
 
 def lambda_handler(event, context):
     # Get bucket and file details from S3 event
     bucket = event['Records'][0]['s3']['bucket']['name']
     key = event['Records'][0]['s3']['object']['key']
-    
-    # Skip processing if file isn't in the uploads folder
-    if not key.startswith('uploads/'):
-        print(f"Skipping non-upload file: {key}")
-        return {'status': 'skipped'}
     
     try:
         # Download the uploaded image
