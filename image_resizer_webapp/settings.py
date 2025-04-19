@@ -12,7 +12,7 @@ SECRET_KEY = 'django-insecure-hy)2u!&^o#2nh^e%t*!i(czl#e_*kp6uh6dkxhz$91&3%vptm+
 
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['ImageResizer.onrender.com', 'localhost']
 
 # AWS Settings
 AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')
@@ -103,6 +103,7 @@ USE_I18N = True
 
 USE_TZ = True
 
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
